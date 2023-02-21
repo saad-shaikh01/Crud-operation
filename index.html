@@ -2,60 +2,130 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crud operation in javascript</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 </head>
-<h1 style="text-align: center; color: aliceblue;"> CRUD Application USing JS</h1>
-<body style="background-color: rgb(17, 17, 23);">
-    <table>
-        <tr>
-            <td>
-                <!--HTML form for crud operation-->
-                <form autocomplete="off" onsubmit="onFormSubmit()">
-                    <div>
-                        <label for="fullName">Full Name</label>
-                        <input type="text" name="fullName" id="fullName" >
-                    </div>
-                    <div>
-                        <label for="empCode">Qualification</label>
-                        <input type="text" name="empCode" id="empCode" >
-                    </div>
-                    <div>
-                        <label for="salary">City</label>
-                        <input type="text" name="salary" id="salary">
-                    </div>
-                    <div>
-                        <label for="city">Gender</label>
-                        <input type="text" name="city" id="city">
-                    </div>
-                    <div class="form_action--button">
-                        <input style="background-color: rgb(22, 101, 22);" type="submit" value="Store">
-                        <input style="color:black" type="reset" value="Reset">
-                    </div>
-                </form>
-            </td>
-            <td>
-                <table class="list" id="employeeList">
-                    <thead>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Qualification</th>
-                            <th>City</th>
-                            <th>Gender</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<style>
+  .margin {
+    margin: 2rem;
+  }
+</style>
 
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </table>
-    <script type="text/javascript" src="./script.js"></script>
+<body>
+  <div class="container my-5 py-5 bg-dar">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-12">
+        <div class="inputData p-4 border border-danger ">
+          <!-- HTML code for the input fields and buttons -->
+          <form onsubmit="event.preventDefault();onFormSubmit();" action="">
+            <input type="text" id="input1" placeholder="Name"><br><br>
+            <input type="text" id="input2" placeholder="Email"><br><br>
+            <input type="text" id="input3" placeholder="Age"><br><br>
+
+            <div class="form-action-buttons">
+              <input type="submit" value="submit" class="btn btn-primary">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-12 ">
+        <table id="dataList" class="bg-light ">
+          <thead class="bg-danger">
+            <tr class="text-light text-center">
+              <th class="px-5 py-2 w-100">Name</th>
+              <th class="px-5 py-2 w-100">Email</th>
+              <th class="px-5 py-2 w-100">Age</th>
+              <th class="px-5 py-2 w-100">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-dark text-center text-light  ">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+
+function onFormSubmit() {
+  var formData = readInputData();
+  if (!formData.input1 || !formData.input2 || !formData.input3) {
+    alert("Please fill in all fields.");
+    return;
+  }
+  insertNewRecord(formData);
+  resetForm();
+}
+
+function readInputData() {
+  var formData = {};
+  formData["input1"] = document.getElementById("input1").value;
+  formData["input2"] = document.getElementById("input2").value;
+  formData["input3"] = document.getElementById("input3").value;
+  return formData;
+}
+
+function insertNewRecord(data) {
+  var table = document.getElementById("dataList").getElementsByTagName('tbody')[0];
+  var newRow = table.insertRow(table.length);
+  var cell1 = newRow.insertCell(0);
+  cell1.innerHTML = data["input1"];
+  var cell2 = newRow.insertCell(1);
+  cell2.innerHTML = data["input2"];
+  var cell3 = newRow.insertCell(2);
+  cell3.innerHTML = data["input3"];
+  var cell4 = newRow.insertCell(3);
+  cell4.innerHTML = `<a class="btn btn-light btn-sm" onclick="onEdit(this)">Edit</a>
+                    <a class="btn btn-danger btn-sm" onclick="onDelet(this)">Delet</a>`
+  
+}
+
+function resetForm(){
+  document.getElementById("input1").value ="";
+  document.getElementById("input2").value ="";
+  document.getElementById("input3").value ="";
+}
+
+function onEdit(td){
+  var row = td.parentElement.parentElement;
+  
+  var name = row.cells[0].innerHTML;
+  var email = row.cells[1].innerHTML;
+  var age = row.cells[2].innerHTML;
+
+  document.getElementById("input1").value =name;
+  document.getElementById("input2").value =email;
+  document.getElementById("input3").value =age;
+ 
+  row.remove();
+}
+
+function onDelete(td) {
+  // Get the row that contains the button that was clicked
+  var row = td.parentElement.parentElement;
+
+  // Remove the row from the table
+  row.remove();
+}
+
+function onDelet(td){
+  var row = td.parentElement.parentElement;
+ if(window.confirm("Confirm delet this data")) {
+   row.remove();
+ }
+}
+
+
+  </script>
 </body>
 
 </html>
