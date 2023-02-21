@@ -16,28 +16,43 @@
   .margin {
     margin: 2rem;
   }
+  .inputData input{
+     width: 100%;
+     border-radius: 10px;
+     padding-left: 10px;
+  }
+  .row{
+    margin: auto;
+   
+  }
 </style>
 
-<body>
-  <div class="container my-5 py-5 bg-dar">
+<body >
+  <div class="container  py-5 bg-dar">
+    <div class="main-heading text-center pb-5 text-decoration-underline">
+      <div class="h1 ">CRUD OPERATION</div>
+    </div>
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-12">
-        <div class="inputData p-4 border border-danger ">
+        <div class="inputData p-4 border border-danger border-5 rounded-3 bg-dark ">
           <!-- HTML code for the input fields and buttons -->
           <form onsubmit="event.preventDefault();onFormSubmit();" action="">
-            <input type="text" id="input1" placeholder="Name"><br><br>
+            <label class="text-light ps-2 mb-2" for="Name">Name :</label>
+            <input class type="text" id="input1" placeholder="Name"><br><br>
+            <label class="text-light ps-2 mb-2" for="Name">Email :</label>
             <input type="text" id="input2" placeholder="Email"><br><br>
+            <label class="text-light ps-2 mb-2" for="Name">Age :</label>
             <input type="text" id="input3" placeholder="Age"><br><br>
 
             <div class="form-action-buttons">
-              <input type="submit" value="submit" class="btn btn-primary">
+              <input type="submit" value="submit" class="btn btn-success">
             </div>
           </form>
         </div>
       </div>
 
       <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-12 ">
-        <table id="dataList" class="bg-light ">
+        <table id="dataList" class="bg-light border border-danger border-5 ">
           <thead class="bg-danger">
             <tr class="text-light text-center">
               <th class="px-5 py-2 w-100">Name</th>
@@ -46,7 +61,7 @@
               <th class="px-5 py-2 w-100">Status</th>
             </tr>
           </thead>
-          <tbody class="bg-dark text-center text-light  ">
+          <tbody class="bg-dark text-center text-light border border-danger border-5  ">
 
           </tbody>
         </table>
@@ -84,7 +99,7 @@ function insertNewRecord(data) {
   var cell3 = newRow.insertCell(2);
   cell3.innerHTML = data["input3"];
   var cell4 = newRow.insertCell(3);
-  cell4.innerHTML = `<a class="btn btn-light btn-sm" onclick="onEdit(this)">Edit</a>
+  cell4.innerHTML = `<a class="btn btn-success btn-sm" onclick="onEdit(this)">Edit</a>
                     <a class="btn btn-danger btn-sm" onclick="onDelet(this)">Delet</a>`
   
 }
