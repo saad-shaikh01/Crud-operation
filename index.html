@@ -100,7 +100,7 @@ function insertNewRecord(data) {
   cell3.innerHTML = data["input3"];
   var cell4 = newRow.insertCell(3);
   cell4.innerHTML = `<a class="btn btn-success btn-sm" onclick="onEdit(this)">Edit</a>
-                    <a class="btn btn-danger btn-sm" onclick="onDelet(this)">Delet</a>`
+                    <a class="btn btn-danger btn-sm" onclick="onDelete(this)">Delet</a>`
   
 }
 
@@ -132,7 +132,7 @@ function onDelete(td) {
   row.remove();
 }
 
-function onDelet(td){
+function onDelete(td){
   var row = td.parentElement.parentElement;
  if(window.confirm("Confirm delet this data")) {
    row.remove();
