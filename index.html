@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crud operation in javascript</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<h1 style="text-align: center; color: aliceblue;"> CRUD Application USing JS</h1>
+<body style="background-color: rgb(17, 17, 23);">
+    <table>
+        <tr>
+            <td>
+                <!--HTML form for crud operation-->
+                <form autocomplete="off" onsubmit="onFormSubmit()">
+                    <div>
+                        <label for="fullName">Full Name</label>
+                        <input type="text" name="fullName" id="fullName" >
+                    </div>
+                    <div>
+                        <label for="empCode">Qualification</label>
+                        <input type="text" name="empCode" id="empCode" >
+                    </div>
+                    <div>
+                        <label for="salary">City</label>
+                        <input type="text" name="salary" id="salary">
+                    </div>
+                    <div>
+                        <label for="city">Gender</label>
+                        <input type="text" name="city" id="city">
+                    </div>
+                    <div class="form_action--button">
+                        <input style="background-color: rgb(22, 101, 22);" type="submit" value="Store">
+                        <input style="color:black" type="reset" value="Reset">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <table class="list" id="employeeList">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Qualification</th>
+                            <th>City</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="./script.js"></script>
+</body>
+
+</html>
